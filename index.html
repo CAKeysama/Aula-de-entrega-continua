@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tempo de vida</title>
+</head>
+<body>
+    <h1>Calculadora de Tempo de Vida</h1>
+    <hr>
+
+    <!-- Crie uma aplicação em PHP que receba, por meio de um formulário o nome e o ano de nascimento de uma pessoa. 
+     Com esses dados deverá calcular a idade atual da pessoa e 
+    exibir: 
+        - A idade atual da pessoa; 
+        - A quadidade aproximada de dias que ela já viveu EXTRA: Horas e munutos também.
+        
+        - A quantidade aproximada de batidas que o coração dela já deu, 
+        considerando uma média de 75 batimentos por munuto;
+
+        - Quantos batimentos ainda restam para ela viver, considerando uma expectativa de vida de 90 anos.
+
+        - Quantas respiradas ela já deu, considerando uma média de 17 respiradas por minuto.
+        - Quantas respiradas ainda restam para ela viver, considerando uma expectativa de vida de 90 anos.
+
+        IMPORTANTE: o sistema deve ter um aviso caso a pessoa já tenha ultrapassado a expectativa de vida,
+        ao inves de mostrar um valor negativo.
+    -->
+
+    <form action="calcular.php" method="post">
+        <label for="nome">Nome:</label>
+        <input type="text" name="nome" required>
+        <br>
+        <label for="ano_nascimento">Ano de Nascimento:</label>
+        <input type="number" name="ano_nascimento" min="1910" max="2026" required>
+        <br>
+        <input type="submit" value="Calcular">
+        <input type="reset" value="Limpar">
+    </form>
+</body>
+</html>
