@@ -1,0 +1,76 @@
+<!-- A farmacia paracetaloka, deseja calcular o total do pedido de seus clientes com base na faixa etária e cartão de fidelidade.
+
+Crie um sistema que obtenha:
+    1 - Nome do cliente;
+    2 - Total do pedido;
+    3 - Escolha a faixa etária e aplique o desconto correspondente ( <50 = 0%, 51 - 70 = 5%, >= 71 = 7%);
+    4 - Se o cliente possuir cartão de fidelidade, aplique o desconto de 5% sobre o total do pedido;
+-->
+
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css">
+    <title>Paracetaloka | Checkout</title>
+  </head>
+  <body>
+    <div class="page">
+      <header class="topbar">
+        <div class="logo" aria-hidden="true">+</div>
+        <div class="brand">
+          <h1>Farmácia Paracetaloka</h1>
+          <p>Checkout do pedido</p>
+        </div>
+      </header>
+
+      <main class="card">
+        <div class="card-header">
+          <h2>Finalizar compra</h2>
+          <p>Informe seus dados para calcular o valor com desconto.</p>
+        </div>
+
+        <form action="calcular.php" method="post">
+          <label class="field">
+            <span>Nome do cliente</span>
+            <input type="text" name="nome" placeholder="Ex.: Maria Silva" required />
+          </label>
+
+          <label class="field">
+            <span>Total do pedido (R$)</span>
+            <input type="number" name="total" min="0" step="0.01" placeholder="0,00" required />
+          </label>
+
+          <fieldset class="field age-group">
+            <legend class="group-title">Faixa etária</legend>
+            <div class="options">
+              <label>
+                <input type="radio" name="idade" value="0" required />
+                Menos de 50 anos — sem desconto
+              </label>
+              <label>
+                <input type="radio" name="idade" value="5" />
+                Entre 51 e 70 anos — 5%
+              </label>
+              <label>
+                <input type="radio" name="idade" value="7" />
+                Mais de 71 anos — 7%
+              </label>
+            </div>
+          </fieldset>
+
+          <label class="fidelity">
+            <input type="checkbox" name="cartao" value="1" />
+            Tenho cartão de fidelidade (+5% de desconto)
+          </label>
+
+          <div class="actions">
+            <input class="btn btn-primary" type="submit" value="Calcular total" />
+            <input class="btn btn-ghost" type="reset" value="Limpar" />
+          </div>
+        </form>
+      </main>
+    </div>
+  </body>
+</html>
