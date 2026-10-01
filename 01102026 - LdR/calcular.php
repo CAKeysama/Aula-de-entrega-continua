@@ -51,37 +51,49 @@ switch ($operacao) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <meta name="theme-color" content="#f5f7fa">
-    <title>Resultado | Calculadora</title>
+    <meta name="theme-color" content="#101010">
+    <title><?= $erro ? 'Validação' : 'Relatório de processo' ?> | Cogitator CALC-01</title>
 </head>
 <body>
-    <header class="topbar">
-        <a class="brand" href="index.html" aria-label="Calculadora, página inicial">
-            <span class="brand-mark" aria-hidden="true">C</span>
-            <span>Calculadora</span>
-        </a>
-        <span class="topbar-caption">Ferramentas de cálculo</span>
-    </header>
-
-    <main class="page-shell result-shell">
-        <section class="page-intro" aria-labelledby="page-title">
-            <p class="eyebrow"><?= $erro ? 'CÁLCULO NÃO REALIZADO' : 'OPERAÇÃO CONCLUÍDA' ?></p>
-            <h1 id="page-title"><?= $erro ? 'Revise os valores' : 'Seu resultado' ?></h1>
-            <p class="intro-copy"><?= $erro ? 'O divisor precisa ser diferente de zero.' : 'Confira os detalhes da operação realizada.' ?></p>
-        </section>
-
-        <section class="calculator-panel result-panel<?= $erro ? ' is-error' : '' ?>" aria-label="Resultado do cálculo">
-            <div class="result-label">
-                <span class="status-mark" aria-hidden="true"><?= $erro ? '!' : '✓' ?></span>
-                <div>
-                    <p class="result-caption">Operação</p>
-                    <h2><?= htmlspecialchars($operacoes[$operacao] ?? 'Operação', ENT_QUOTES, 'UTF-8') ?></h2>
-                </div>
+    <main class="crt-terminal<?= $erro ? ' terminal-error' : '' ?>" aria-labelledby="terminal-title">
+        <header class="crt-header">
+            <div>
+                <p class="terminal-kicker">ADEPTUS MECHANICUS // COGITATOR INTERFACE</p>
+                <h1 id="terminal-title">CALCULATION TERMINAL <span>NODE: CALC-01</span></h1>
             </div>
-            <output class="result-value" aria-live="polite"<?= $erro ? ' role="alert"' : '' ?>><?= htmlspecialchars((string) $resultado, ENT_QUOTES, 'UTF-8') ?></output>
-            <a class="button button-primary" href="index.html">Nova operação <span aria-hidden="true">→</span></a>
+            <p class="terminal-version">LOCAL / ARITHMETIC CORE</p>
+        </header>
+
+        <section class="system-status" aria-label="Estado do terminal">
+            <p class="section-prompt">&gt; PROCESS STATUS</p>
+            <dl class="status-lines">
+                <div><dt>SYSTEM</dt><dd><span class="state-ok">[ONLINE]</span></dd></div>
+                <div><dt>OP-CODE</dt><dd><?= htmlspecialchars(strtoupper($operacao), ENT_QUOTES, 'UTF-8') ?></dd></div>
+                <div><dt>ARITHMETIC CORE</dt><dd><span class="<?= $erro ? 'state-error' : 'state-ok' ?>">[<?= $erro ? 'INPUT ERROR' : 'COMPLETE' ?>]</span></dd></div>
+            </dl>
         </section>
-        <footer class="page-footer">Calculadora de operações <span aria-hidden="true">·</span> Uso simples e direto</footer>
+
+        <section class="boot-log" aria-label="Registro desta operação">
+            <p><span class="prompt">&gt;</span> INPUT REGISTERS RECEIVED <span class="state-ok">[2]</span></p>
+            <p><span class="prompt">&gt;</span> <?= $erro ? 'DIVISION HALTED: DIVISOR CANNOT BE ZERO' : 'ARITHMETIC PROCESS COMPLETE' ?> <span class="<?= $erro ? 'state-error' : 'state-ok' ?>">[<?= $erro ? 'ERROR' : 'OK' ?>]</span></p>
+        </section>
+
+        <section class="command-region result-region <?= $erro ? 'terminal-error' : '' ?>" aria-labelledby="report-title">
+            <h2 class="section-prompt" id="report-title">&gt; DIAGNOSTIC REPORT</h2>
+            <dl class="result-registers">
+                <div><dt>REG-01 / Primeiro número</dt><dd><?= htmlspecialchars((string) $num1, ENT_QUOTES, 'UTF-8') ?></dd></div>
+                <div><dt>REG-02 / Segundo número</dt><dd><?= htmlspecialchars((string) $num2, ENT_QUOTES, 'UTF-8') ?></dd></div>
+                <div><dt>OP-CODE / Operação</dt><dd><?= htmlspecialchars($operacoes[$operacao] ?? 'Operação', ENT_QUOTES, 'UTF-8') ?></dd></div>
+            </dl>
+            <p class="output-label"><span class="prompt">&gt;</span> <?= $erro ? 'DIAGNOSTIC' : 'RESULT' ?>:</p>
+            <output class="terminal-output" aria-live="polite"<?= $erro ? ' role="alert"' : '' ?>><?= htmlspecialchars((string) $resultado, ENT_QUOTES, 'UTF-8') ?></output>
+            <p class="return-line"><a class="terminal-command" href="index.html">[ RETURN TO CALCULATOR ]</a></p>
+        </section>
+
+        <footer class="crt-footer">
+            <span>CALC-01 / LOCAL COMPUTATION</span>
+            <span>CORE STATUS: <?= $erro ? '<b class="state-error">INPUT REQUIRED</b>' : '<b class="state-ok">READY</b>' ?></span>
+        </footer>
     </main>
 </body>
 </html>

@@ -4,61 +4,81 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <meta name="theme-color" content="#f5f7fa">
-    <title>Calculadora de operações</title>
+    <meta name="theme-color" content="#101010">
+    <title>Cogitator CALC-01 | Terminal de cálculo</title>
 </head>
 <body>
-    <header class="topbar">
-        <a class="brand" href="index.html" aria-label="Calculadora, página inicial">
-            <span class="brand-mark" aria-hidden="true">C</span>
-            <span>Calculadora</span>
-        </a>
-        <span class="topbar-caption">Ferramentas de cálculo</span>
-    </header>
+    <main class="crt-terminal" aria-labelledby="terminal-title">
+        <header class="crt-header">
+            <div>
+                <p class="terminal-kicker">ADEPTUS MECHANICUS // COGITATOR INTERFACE</p>
+                <h1 id="terminal-title">CALCULATION TERMINAL <span>NODE: CALC-01</span></h1>
+            </div>
+            <p class="terminal-version">LOCAL / ARITHMETIC CORE</p>
+        </header>
 
-    <main class="page-shell">
-        <section class="page-intro" aria-labelledby="page-title">
-            <p class="eyebrow">CÁLCULOS DO DIA A DIA</p>
-            <h1 id="page-title">Uma conta de cada vez.</h1>
-            <p class="intro-copy">Informe os valores e escolha a operação para ver o resultado.</p>
+        <section class="system-status" aria-label="Estado do terminal">
+            <p class="section-prompt">&gt; COGITATOR STATUS</p>
+            <dl class="status-lines">
+                <div><dt>SYSTEM</dt><dd><span class="state-ok">[ONLINE]</span></dd></div>
+                <div><dt>ARITHMETIC CORE</dt><dd><span class="state-ok">[READY]</span></dd></div>
+                <div><dt>INPUT CHANNEL</dt><dd>HTTP POST</dd></div>
+            </dl>
         </section>
 
-        <section class="calculator-panel" aria-labelledby="form-title">
-            <div class="panel-heading">
-                <span class="section-index" aria-hidden="true">01</span>
-                <div>
-                    <h2 id="form-title">Nova operação</h2>
-                    <p>Preencha os campos abaixo.</p>
-                </div>
-            </div>
+        <section class="boot-log" aria-label="Mensagens do sistema">
+            <p><span class="prompt">&gt;</span> NODE CALC-01 INITIALIZED <span class="state-ok">[OK]</span></p>
+            <p><span class="prompt">&gt;</span> ARITHMETIC OPERATIONS AVAILABLE <span class="state-ok">[5]</span></p>
+            <p><span class="prompt">&gt;</span> AWAITING INPUT REGISTERS<span class="cursor" aria-hidden="true">_</span></p>
+        </section>
 
-            <form action="calcular.php" method="post" class="calculator-form">
-                <div class="field-grid">
-                    <div class="field">
-                        <label for="num1">Primeiro número</label>
-                        <input type="number" name="num1" id="num1" step="any" placeholder="Ex.: 24" required>
-                    </div>
-                    <div class="field">
-                        <label for="num2">Segundo número</label>
-                        <input type="number" name="num2" id="num2" step="any" placeholder="Ex.: 6" required>
-                    </div>
+        <section class="command-region" aria-labelledby="command-title">
+            <h2 class="section-prompt" id="command-title">&gt; SUBMIT CALCULATION</h2>
+            <form action="calcular.php" method="post" class="terminal-form">
+                <div class="register-line">
+                    <label for="num1"><span class="register-id">REG-01</span> Primeiro número</label>
+                    <input type="number" name="num1" id="num1" step="any" placeholder="digite um valor" required>
                 </div>
-
-                <div class="field">
-                    <label for="operacao">Operação</label>
+                <div class="register-line">
+                    <label for="num2"><span class="register-id">REG-02</span> Segundo número</label>
+                    <input type="number" name="num2" id="num2" step="any" placeholder="digite um valor" required>
+                </div>
+                <div class="register-line">
+                    <label for="operacao"><span class="register-id">OP-CODE</span> Operação</label>
                     <select name="operacao" id="operacao" required>
-                        <option value="soma">Soma</option>
-                        <option value="subtracao">Subtração</option>
-                        <option value="multiplicacao">Multiplicação</option>
-                        <option value="divisao">Divisão</option>
-                        <option value="tabuada">Tabuada</option>
+                        <option value="soma">ADD / Soma</option>
+                        <option value="subtracao">SUB / Subtração</option>
+                        <option value="multiplicacao">MUL / Multiplicação</option>
+                        <option value="divisao">DIV / Divisão</option>
+                        <option value="tabuada">SEQ / Tabuada</option>
                     </select>
                 </div>
-
-                <button class="button button-primary" type="submit">Calcular <span aria-hidden="true">→</span></button>
+                <p class="form-hint">Nota: o registrador REG-02 deve ser diferente de zero na operação DIV.</p>
+                <div class="command-line">
+                    <span class="prompt" aria-hidden="true">&gt;</span>
+                    <button type="submit" class="terminal-command">[ EXECUTE ]</button>
+                </div>
             </form>
         </section>
-        <footer class="page-footer">Calculadora de operações <span aria-hidden="true">·</span> Uso simples e direto</footer>
+
+        <section class="opcode-reference" aria-labelledby="opcode-title">
+            <h2 class="section-prompt" id="opcode-title">&gt; OP-CODE REFERENCE</h2>
+            <table class="opcode-table">
+                <thead><tr><th>CODE</th><th>OP</th><th>FUNCTION</th></tr></thead>
+                <tbody>
+                    <tr><td>ADD</td><td>+</td><td>Soma</td></tr>
+                    <tr><td>SUB</td><td>-</td><td>Subtração</td></tr>
+                    <tr><td>MUL</td><td>×</td><td>Multiplicação</td></tr>
+                    <tr><td>DIV</td><td>÷</td><td>Divisão</td></tr>
+                    <tr><td>SEQ</td><td>×10</td><td>Tabuada</td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <footer class="crt-footer">
+            <span>CALC-01 / LOCAL COMPUTATION</span>
+            <span>CORE STATUS: READY</span>
+        </footer>
     </main>
 </body>
 </html>
