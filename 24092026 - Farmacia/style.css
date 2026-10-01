@@ -220,6 +220,43 @@ input[type="number"]:focus {
   text-decoration: underline;
 }
 
+.installments {
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid #e5e7eb;
+}
+
+.installments h3 {
+    margin: 0 0 12px;
+    color: #263238;
+    font-size: 1rem;
+}
+
+.installment-list {
+    display: grid;
+    gap: 8px;
+}
+
+.installment-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 14px;
+    border-radius: 10px;
+    background: #f4f8f7;
+    color: #455a64;
+}
+
+.installment-item strong {
+    color: #16805c;
+}
+
+.total-row {
+    margin-top: 12px;
+    padding-top: 16px;
+    border-top: 2px solid #16805c;
+}
+
 @media (max-width: 520px) {
   .actions {
     flex-direction: column;

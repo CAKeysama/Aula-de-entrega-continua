@@ -31,6 +31,28 @@ $totalFormatado = number_format((float)$totalFinal, 2, ',', '.');
 $descontoTexto = $desconto . '%';
 $cartaoTexto = $cartao == 1 ? 'Sim' : 'Não';
 
+$parcelasFor = [];
+
+for ($i = 1; $i <= 6; $i++) {
+    $parcelasFor[] = [
+        'quantidade' => $i,
+        'valor' => $totalFinal / $i
+    ];
+}
+
+$parcelasWhile = [];
+$i = 1;
+
+while ($i <= 6) {
+    $parcelasWhile[] = [
+        'quantidade' => $i,
+        'valor' => $totalFinal / $i
+    ];
+
+    $i++;
+}
+
+
 ?>
 
 <!-- SAIDA -->
@@ -70,6 +92,38 @@ $cartaoTexto = $cartao == 1 ? 'Sim' : 'Não';
             <span>Desconto total</span>
             <span><?php echo $descontoTexto; ?></span>
           </div>
+
+          <section class="installments">
+                    <h3>Parcelamento usando FOR</h3>
+
+                    <div class="installment-list">
+                        <?php foreach ($parcelasFor as $parcela): ?>
+                            <div class="installment-item">
+                                <span>
+                                    <?php echo $parcela['quantidade']; ?>x
+                                </span>
+
+                                <strong>R$<?php echo number_format($parcela['valor'],2,',','.'); ?></strong>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </section>
+
+                <section class="installments">
+                    <h3>Parcelamento usando WHILE</h3>
+
+                    <div class="installment-list">
+                        <?php foreach ($parcelasWhile as $parcela): ?>
+                            <div class="installment-item">
+                                <span>
+                                    <?php echo $parcela['quantidade']; ?>x
+                                </span>
+                                <strong>R$<?php echo number_format($parcela['valor'],2,',','.'); ?></strong>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </section>
+
           <div class="receipt-row">
             <span>Total a pagar</span>
             <strong>R$ <?php echo $totalFormatado; ?></strong>
